@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\API;
+use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -67,6 +68,7 @@ class PassportController extends Controller
     	$user->name = $request->name;
     	$user->email = $request->email;
     	$user->password = bcrypt( $request->password );
+        $user->save();
 
     	return response()->json([
 			'message' => 'Usuário '.$user->name.' criado com sucesso!',
@@ -94,7 +96,7 @@ class PassportController extends Controller
     	$accessToken->revoke();
 
     	return response()->json([
-    		'message' => .$user->name." deslogado com sucesso!",
+    		'message' => $user->name." deslogado com sucesso!",
     		'data' => null
     	], 201); 
     }
