@@ -42,7 +42,13 @@ class User extends Authenticatable
 
     public function minhasReservas() {
 
-        return Reserva::where('id', $this->id)->get();
+        $reservas = Reserva::where('user_id', $this->id)->get();
+
+        foreach ( $reservas as &$reserva ) {
+            $reserva->user = $this;
+        }
+
+        return $reservas;
 
     }
 }

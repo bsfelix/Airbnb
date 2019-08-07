@@ -63,9 +63,12 @@ class ReservaController extends Controller
             $reserva = new Reserva();
             
             $reserva->name = $request->name;
-            $reserva->data = $request->data;
+            $reserva->date = $request->date;
+            $reserva->user_id = $user->id;
 
             $reserva->save();
+
+            $reserva->user = $user;
 
             return response()->json( [
             	"message" => "Reserva criada com sucesso!",
@@ -166,12 +169,13 @@ class ReservaController extends Controller
      */
     public function destroy($id)
     {
+       
         $user = Auth::user();
 
         if ( $user ) {
 
             $reserva = Reserva::find($id);
-            $reserva->destroy();
+            $reserva->destroy($id);
 
             return response()->json( [
                 "message" => "Reserva deletada com sucesso!",

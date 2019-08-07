@@ -1,9 +1,33 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>reservas</ion-title>
+    <ion-title>Reservas</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div>
+    <ion-button color="danger" (click)="logout()"><ion-icon name="log-out"></ion-icon>Sair</ion-button>
+  </div>
+  <div>
+    
+    <ion-card *ngFor="let reserva of reservas; let i = index" (click)="select(i)">
+      
+      <div *ngIf="i == selectedCard">
+        <ion-button color="danger" [disabled]="!canDelete" (click)="delete(i)"><ion-icon name="trash"></ion-icon></ion-button>
+      </div>
 
+      <ion-card-header>
+        <ion-card-subtitle>{{ reserva.date }}</ion-card-subtitle>
+        <ion-card-title>{{ reserva.name }}</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <p>Reservado por: <b>{{ reserva.user.name }}</b></p>
+        <p *ngIf="i == selectedCard"><i>Reservado em: {{ reserva.created_at }}</i></p>
+      </ion-card-content>
+
+    </ion-card>
+
+    <ion-button (click)="new()"><ion-icon name="add"></ion-icon>Nova reserva</ion-button>
+  </div>
 </ion-content>

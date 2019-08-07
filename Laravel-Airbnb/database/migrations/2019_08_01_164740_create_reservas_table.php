@@ -17,10 +17,10 @@ class CreateReservasTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->string('name');
-            $table->date('data');
+            $table->date('date');
 
             // FK de usuário
-            $table->unsignedBigInteger('user_id')->unsigned()->nullable();
+            $table->unsignedBigInteger('user_id')->unsigned();
         });
 
         // Especificação das restrições da FK

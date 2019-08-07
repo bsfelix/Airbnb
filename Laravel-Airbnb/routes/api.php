@@ -15,18 +15,17 @@ use Illuminate\Http\Request;
 
 Route::post('login', 'API\PassportController@login');
 Route::post('register', 'API\PassportController@register');
+Route::get('checkToken', 'API\PassportController@checkToken');
 
 Route::group( ['middleware' => 'auth:api'], function() {
+	
 	Route::get('logout', 'API\PassportController@logout');
 	Route::post('get-details', 'API\PassportController@getDetails');
+
+	Route::get('reserva', 'ReservaController@index');
+	Route::get('reserva/{id}', 'ReservaController@show');
+	Route::post('reserva', 'ReservaController@store');
+	Route::put('reserva', 'ReservaController@update');
+	Route::delete('reserva/{id}', 'ReservaController@destroy');
+
 });
-
-Route::get('reserva', 'ReservaController@index');
-Route::get('reserva/{$id}', 'ReservaController@show');
-Route::post('reserva', 'ReservaController@store');
-Route::put('reserva', 'ReservaController@update');
-Route::delete('reserva/{$id}', 'ReservaController@destroy');
-
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
