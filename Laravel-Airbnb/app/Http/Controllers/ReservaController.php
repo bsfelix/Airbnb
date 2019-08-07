@@ -100,10 +100,21 @@ class ReservaController extends Controller
 
             $reserva = Reserva::find($id);
 
-            return response()->json( [
-                "message" => "Busca concluída!",
-                "data" => $reserva
-            ], 200 );
+            if ( $reserva->user_id == $user->id ) {
+
+                return response()->json( [
+                    "message" => "Busca concluída!",
+                    "data" => $reserva
+                ], 200 );
+
+            } else {
+
+                return response()->json( [
+                    "message" => "Esta reserva não lhe pertence!",
+                    "data" => null
+                ], 401 );
+                
+            }
 
         } else {
 

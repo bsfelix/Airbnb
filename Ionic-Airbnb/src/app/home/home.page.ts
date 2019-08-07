@@ -24,6 +24,7 @@ export class HomePage {
 
   }
 
+  // Função disparada quando clicarmos no botão de login
   loginUsuario( form ) {
 
   	if ( form.status == "VALID" ) {
@@ -32,7 +33,6 @@ export class HomePage {
   			(res) => {
 				console.log( res.message );
 				localStorage.setItem( 'userToken', res.data.token );
-				localStorage.setItem( 'userLogged', 'true' );
 				this.router.navigate(['reservas']);
   			}
   		);

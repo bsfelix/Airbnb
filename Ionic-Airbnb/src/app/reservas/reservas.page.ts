@@ -28,6 +28,7 @@ export class ReservasPage {
     this.reservas = [];
   }
 
+  // Função logout
   logout() {
     this.authService.deslogarUsuario().subscribe(
       (res) => {
@@ -43,6 +44,7 @@ export class ReservasPage {
     this.selectedCard = i;
   }
 
+  // Função deletar reserva
   delete(i) {
     this.canDelete = false;
     this.reservasService.deletarReserva( this.reservas[i].id ).subscribe( (res) => {
@@ -53,6 +55,7 @@ export class ReservasPage {
     });
   }
 
+  // Função adc reserva
   new() {
 
     this.canDelete = false;

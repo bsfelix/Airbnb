@@ -13,15 +13,17 @@ use Illuminate\Http\Request;
 |
 */
 
+// Rotas da PassportController que não precisam de token
 Route::post('login', 'API\PassportController@login');
 Route::post('register', 'API\PassportController@register');
-Route::get('checkToken', 'API\PassportController@checkToken');
 
 Route::group( ['middleware' => 'auth:api'], function() {
 	
+	// Rotas da PassportController que precisam de token
 	Route::get('logout', 'API\PassportController@logout');
 	Route::post('get-details', 'API\PassportController@getDetails');
 
+	// Rotas para as reservas
 	Route::get('reserva', 'ReservaController@index');
 	Route::get('reserva/{id}', 'ReservaController@show');
 	Route::post('reserva', 'ReservaController@store');
