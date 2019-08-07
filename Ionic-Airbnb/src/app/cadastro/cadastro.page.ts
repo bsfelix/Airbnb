@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
@@ -13,7 +14,7 @@ export class CadastroPage implements OnInit {
 
   registerForm: FormGroup;
 
-  constructor( public formbuilder: FormBuilder, public authService: AuthService ) {
+  constructor( public formbuilder: FormBuilder, public authService: AuthService, public router: Router ) {
 
   	this.registerForm = this.formbuilder.group({
   		name: ['', [Validators.required]],
@@ -33,7 +34,8 @@ export class CadastroPage implements OnInit {
 
   		this.authService.registrarUsuario( form.value ).subscribe(
   			( res ) => {
-  				console.log( res );
+				  console.log( res );
+				  this.router.navigate(['home']);
   			}
   		);
 
