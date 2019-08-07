@@ -11,7 +11,9 @@
   <div>
     
     <ion-card *ngFor="let reserva of reservas; let i = index" (click)="select(i)">
-      
+
+      Índice: {{i}}, id: {{reserva.id}}
+
       <div *ngIf="i == selectedCard">
         <ion-button color="danger" [disabled]="!canDelete" (click)="delete(i)"><ion-icon name="trash"></ion-icon></ion-button>
       </div>

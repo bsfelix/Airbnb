@@ -17,8 +17,15 @@ export class ReservasPage {
 
   constructor( public router: Router, public authService: AuthService, public reservasService: ReservasService ) {}
 
+  // Equivalente ao ngOnInit
   ionViewDidEnter () {
     // Pega as reservas
+    this.reservasService.pegarReservas().subscribe(
+      (res) => {
+        console.log( res.message );
+        this.reservas = res.data;
+      }
+    );
   }
 
   ionViewWillLeave () {
@@ -28,6 +35,13 @@ export class ReservasPage {
 
   // Função logout
   logout() {
+    this.authService.vaiEmboraLek().subscribe(
+      (res) => {
+        console.log( res.message );
+        localStorage.removeItem('userToken');
+        this.router.navigate(['home']);
+      }
+    );
   }
 
   select( i ) {
@@ -35,11 +49,26 @@ export class ReservasPage {
   }
 
   // Função deletar reserva
-  delete(i) {
+  delete( i ) {
+    this.reservasService.deletarReserva( this.reservas[i].id ).subscribe(
+      (res) => {
+        
+        console.log( res.message );
+
+        this.reservas.splice( i, 1 );
+
+      }
+    );
   }
 
   // Função adc reserva
   new() {
+    this.reservasService.criarReserva( "Reserva muito maneira", "2020-12-31 20:00:00" ).subscribe(
+      (res) => {
+        console.log( res.message );
+        this.reservas.push( res.data );
+      }
+    );
   }
 
 }

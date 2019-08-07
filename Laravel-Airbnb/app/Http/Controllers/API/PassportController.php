@@ -99,7 +99,7 @@ class PassportController extends Controller
     	$accessToken->revoke();
 
     	return response()->json([
-    		'message' => $user->name." Deslogado com sucesso!",
+    		'message' => $user->name." deslogado com sucesso!",
     		'data' => null
     	], 201); 
 	}

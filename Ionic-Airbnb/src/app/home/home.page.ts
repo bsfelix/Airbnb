@@ -25,7 +25,26 @@ export class HomePage {
   }
 
   // Função disparada quando clicarmos no botão de login
-  loginUsuario( form ) {
+  loginUsuario( loginForm ) {
+
+  	// Se o form for válido
+  	if ( loginForm.status == "VALID" ) {
+
+  		// Falamos pra service mandar os dados do form
+  		this.authService.logarUsuario( loginForm.value ).subscribe(
+  			// E quando recebermos uma resposta
+  			(res) => {
+  				// Mostramos a mensagem no console
+  				console.log( res.message );
+  				// Salvamos o token na localStorage
+  				localStorage.setItem( 'userToken', res.data.token );
+  				// Navegamos pra rota antes bloqueada (será que agora vai?)
+  				this.router.navigate(['reservas']);
+  			}
+  		);
+
+  	}
+
   }
 
 
