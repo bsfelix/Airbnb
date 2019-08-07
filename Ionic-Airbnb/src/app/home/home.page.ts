@@ -26,19 +26,6 @@ export class HomePage {
 
   // Função disparada quando clicarmos no botão de login
   loginUsuario( form ) {
-
-  	if ( form.status == "VALID" ) {
-
-  		this.authService.logarUsuario( form.value ).subscribe(
-  			(res) => {
-				console.log( res.message );
-				localStorage.setItem( 'userToken', res.data.token );
-				this.router.navigate(['reservas']);
-  			}
-  		);
-
-  	}
-
   }
 
 

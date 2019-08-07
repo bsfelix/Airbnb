@@ -30,20 +30,6 @@ export class CadastroPage implements OnInit {
 
   // Função chamada quando nós enviarmos o form
   registrarUsuario( form ) {
-
-	// Se o formulário for válido
-  	if ( form.status == "VALID" ) {
-
-		// Mandaremos a requisição para a API
-  		this.authService.registrarUsuario( form.value ).subscribe(
-  			( res ) => {
-				  console.log( res );
-				  this.router.navigate(['home']);
-  			}
-  		);
-
-  	}
-
   }
 
 }

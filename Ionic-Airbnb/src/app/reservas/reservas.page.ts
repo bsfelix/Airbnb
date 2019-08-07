@@ -18,26 +18,16 @@ export class ReservasPage {
   constructor( public router: Router, public authService: AuthService, public reservasService: ReservasService ) {}
 
   ionViewDidEnter () {
-    this.reservasService.pegarReservas().subscribe( (res) => {
-      console.log( res.message );
-      this.reservas = res.data;
-    });
+    // Pega as reservas
   }
 
   ionViewWillLeave () {
+    // Apaga as reservas armazenadas
     this.reservas = [];
   }
 
   // Função logout
   logout() {
-    this.authService.deslogarUsuario().subscribe(
-      (res) => {
-        console.log( res.message );
-        localStorage.removeItem( 'userToken' )
-        localStorage.removeItem( 'userLogged' );
-        this.router.navigate(['home']);
-      }
-    );
   }
 
   select( i ) {
@@ -46,25 +36,10 @@ export class ReservasPage {
 
   // Função deletar reserva
   delete(i) {
-    this.canDelete = false;
-    this.reservasService.deletarReserva( this.reservas[i].id ).subscribe( (res) => {
-      this.canDelete = true;
-      this.reservas.splice( i, 1 );
-      this.selectedCard = -1;
-      console.log( res.message )
-    });
   }
 
   // Função adc reserva
   new() {
-
-    this.canDelete = false;
-    
-    this.reservasService.criarReserva( "Reserva", '2019-10-10 10:00:00' ).subscribe( (res) => {
-      console.log( res.message );
-      this.reservas.push( res.data );
-    });
-
   }
 
 }
