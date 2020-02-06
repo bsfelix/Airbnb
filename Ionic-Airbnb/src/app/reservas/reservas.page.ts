@@ -22,8 +22,8 @@ export class ReservasPage {
     // Pega as reservas
     this.reservasService.pegarReservas().subscribe(
       (res) => {
-        console.log( res.message );
-        this.reservas = res.data;
+      console.log( res['message']);
+      this.reservas = res['data'];
       }
     );
   }
@@ -37,7 +37,7 @@ export class ReservasPage {
   logout() {
     this.authService.vaiEmboraLek().subscribe(
       (res) => {
-        console.log( res.message );
+        console.log( res['message'] );
         localStorage.removeItem('userToken');
         this.router.navigate(['home']);
       }
@@ -53,7 +53,7 @@ export class ReservasPage {
     this.reservasService.deletarReserva( this.reservas[i].id ).subscribe(
       (res) => {
         
-        console.log( res.message );
+        console.log( res['message'] );
 
         this.reservas.splice( i, 1 );
 
@@ -65,8 +65,8 @@ export class ReservasPage {
   new() {
     this.reservasService.criarReserva( "Reserva muito maneira", "2020-12-31 20:00:00" ).subscribe(
       (res) => {
-        console.log( res.message );
-        this.reservas.push( res.data );
+        console.log( res['message'] );
+        this.reservas.push( res['data'] );
       }
     );
   }
