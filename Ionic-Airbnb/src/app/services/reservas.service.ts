@@ -51,7 +51,7 @@ export class ReservasService {
   deletarReserva( id: number ): Observable<any> {
 
   	this.httpHeaders['headers']["Authorization"] = 'Bearer ' + localStorage.getItem('userToken');
-  	console.log( this.httpHeaders.headers );
+  	console.log( this.httpHeaders['headers'] );
 
   	return this.http.delete( this.apiUrl + 'reserva/' + id,
   							 this.httpHeaders );
