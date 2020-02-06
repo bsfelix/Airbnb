@@ -42,7 +42,7 @@ export class AuthService {
   // Logout do usuário
   vaiEmboraLek() {
 
-    this.httpHeaders.headers["Authorization"] = 'Bearer ' + localStorage.getItem('userToken');
+    this.httpHeaders['headers']["Authorization"] = 'Bearer ' + localStorage.getItem('userToken');
 
     return this.http.get( this.apiUrl + 'logout',
                           this.httpHeaders );

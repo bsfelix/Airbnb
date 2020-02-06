@@ -26,7 +26,7 @@ export class ReservasService {
   pegarReservas(): Observable<any> {
 
 
-  	this.httpHeaders.headers["Authorization"] = 'Bearer ' + localStorage.getItem('userToken');
+  	this.httpHeaders['headers']["Authorization"] = 'Bearer ' + localStorage.getItem('userToken');
 
   	return this.http.get( this.apiUrl + 'reserva',
   						  this.httpHeaders );
@@ -36,7 +36,7 @@ export class ReservasService {
   criarReserva( nome: string, data: string ): Observable<any> {
 
 
-  	this.httpHeaders.headers["Authorization"] = 'Bearer ' + localStorage.getItem('userToken');
+  	this.httpHeaders['headers']["Authorization"] = 'Bearer ' + localStorage.getItem('userToken');
 
   	return this.http.post( this.apiUrl + 'reserva',
   						   {
@@ -50,7 +50,7 @@ export class ReservasService {
   // Deleta as reservas
   deletarReserva( id: number ): Observable<any> {
 
-  	this.httpHeaders.headers["Authorization"] = 'Bearer ' + localStorage.getItem('userToken');
+  	this.httpHeaders['headers']["Authorization"] = 'Bearer ' + localStorage.getItem('userToken');
   	console.log( this.httpHeaders.headers );
 
   	return this.http.delete( this.apiUrl + 'reserva/' + id,
